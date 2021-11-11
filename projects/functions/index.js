@@ -12,6 +12,11 @@
 
  Другими словами: функция должна возвращать в неизменном виде то, что поступает ей на вход
  */
+
+import './index.html';
+
+console.log('jjj');
+
 function returnFirstArgument(value) {
   return value;
 }
@@ -36,7 +41,7 @@ function returnFirstArgument(value) {
   return a + b;
 }
  */
-function sumWithDefaults(a, b: number = 100) {
+function sumWithDefaults(a, b = 100) {
   return a + b;
 }
 
