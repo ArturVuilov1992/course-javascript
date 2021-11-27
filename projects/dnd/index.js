@@ -1,31 +1,44 @@
-/* Задание со звездочкой */
+  const btn = document.querySelector('.addDiv');
+  const homeworkContainer = document.querySelector('.homeWorkContainer');
+  let currentDrag;
+   let startX = 0;
+   let startY = 0;
 
-/*
- Создайте страницу с кнопкой.
- При нажатии на кнопку должен создаваться div со случайными размерами, цветом и позицией на экране
- Необходимо предоставить возможность перетаскивать созданные div при помощи drag and drop
- Запрещено использовать сторонние библиотеки. Разрешено пользоваться только тем, что встроено в браузер
- */
+  btn.addEventListener("click", function () {
+    const newDivItem = createDivElement();
+    homeworkContainer.appendChild(newDivItem);
+  });
 
-/*
- homeworkContainer - это контейнер для всех ваших домашних заданий
- Если вы создаете новые html-элементы и добавляете их на страницу, то добавляйте их только в этот контейнер
+  function getRandom(min, max){
+    return Math.ceil(Math.random() * (max - min) + min)
+  };
 
- Пример:
-   const newDiv = document.createElement('div');
-   homeworkContainer.appendChild(newDiv);
- */
-import './dnd.html';
+  function createDivElement() {
+      const newDiv = document.createElement("div");
+      newDiv.classList.add(draggable-div);
+      newDiv.style.color = `rgb(${getRandom(0, 255)}, ${getRandom(0, 255)}, ${getRandom(0, 255)})`;
+      newDiv.style.width = `${getRandom(10, 500)} + px`;
+      newDiv.style.height = `${getRandom(10, 500)} + px`;
+      newDiv.style.top = `${getRandom(0, window.innerHeight)} + px`;
+      newDiv.style.left = `${getRandom(0, window.innerWidth)} + px`;
 
-const homeworkContainer = document.querySelector('#app');
+      div.addEventListener('mousedown', (e) => {
+        currentDrag = div;
+        startX = e.offsetX;/////позиция курсора в момент нажатия относит ближ род, эта инфа в консоли сли вызвать событие
+        startY = e.offsetY;//////?????
+      });
 
-document.addEventListener('mousemove', (e) => {});
+      div.addEventListener('mouseup', () => (currentDrag = false));
+        return newDiv;
+  };
+  
+    document.addEventListener('mousemove', (e) => {
+     if (currentDrag) {
+       currentDrag.style.top = e.clientY - startY + 'px';
+       currentDrag.style.left = e.clientX - startX + 'px';
+     }
+   });
 
-export function createDiv() {}
 
-const addDivButton = homeworkContainer.querySelector('#addDiv');
-
-addDivButton.addEventListener('click', function () {
-  const div = createDiv();
-  homeworkContainer.appendChild(div);
-});
+  ///DnD более полнове ный процесс,не так часто обновляет и перерисовывает изобр,рывками идет
+  
